@@ -1,0 +1,12 @@
+# Segredos nunca entram no repositório
+*.pem
+*.key
+*.ovpn
+*.tblk/
+id_rsa*
+id_ed25519*
+.aws/
+
+# Python
+__pycache__/
+*.pyc

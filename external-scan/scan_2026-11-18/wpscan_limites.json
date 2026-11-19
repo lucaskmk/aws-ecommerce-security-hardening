@@ -1,0 +1,39 @@
+{
+  "tool": "WordPress Security Scanner",
+  "version": "4.2.0",
+  "target_url": "https://maisplace.net.br/",
+  "start_time": 1795053783,
+  "stop_time": 1795053846,
+  "requests_done": 92,
+  "response_status_codes": {
+    "200": 70,
+    "404": 11,
+    "429": 7,
+    "403": 2,
+    "302": 1
+  },
+  "scan_aborted": "SIGTERM",
+  "vuln_api_error": "No WPScan API Token given, as a result vulnerability data has not been output.\nYou can get a free API token with 25 daily requests by registering at https://wpscan.com/register",
+  "interesting_findings": [
+    {
+      "type": "headers",
+      "url": "https://maisplace.net.br/"
+    },
+    {
+      "type": "robots_txt",
+      "url": "https://maisplace.net.br/robots.txt"
+    },
+    {
+      "type": "xmlrpc",
+      "url": "https://maisplace.net.br/xmlrpc.php"
+    },
+    {
+      "type": "readme",
+      "url": "https://maisplace.net.br/readme.html"
+    },
+    {
+      "type": "wp_cron",
+      "url": "https://maisplace.net.br/wp-cron.php"
+    }
+  ]
+}

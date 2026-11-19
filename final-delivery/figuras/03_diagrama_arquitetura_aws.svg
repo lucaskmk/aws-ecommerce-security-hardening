@@ -1,0 +1,328 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" font-family="Segoe UI, Arial, Helvetica, sans-serif">
+  <defs>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="112%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0F172A" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563EB"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#7C3AED"/>
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#D97706"/>
+    </marker>
+  </defs>
+
+  <!-- Clean Light Background -->
+  <rect width="1920" height="1080" fill="#F8FAFC"/>
+
+  <!-- Top Header Banner -->
+  <rect x="0" y="0" width="1920" height="82" fill="#0F172A"/>
+  <text x="36" y="38" fill="#FFFFFF" font-size="25" font-weight="700">Arquitetura de Segurança em Nuvem — MaisPlace (Grupo G3)</text>
+  <text x="36" y="64" fill="#94A3B8" font-size="14.5">AWS us-east-1  |  VPC: g3-vpc (10.0.0.0/16)  |  Domínio: maisplace.net.br  |  TLS Full Strict</text>
+
+  <!-- Legend in Header Right -->
+  <g transform="translate(1160, 22)">
+    <line x1="0" y1="12" x2="30" y2="12" stroke="#10B981" stroke-width="3.5" marker-end="url(#arrow-green)"/>
+    <text x="40" y="17" fill="#E2E8F0" font-size="13.5" font-weight="600">Web / HTTPS</text>
+    <line x1="165" y1="12" x2="195" y2="12" stroke="#3B82F6" stroke-width="3.5" marker-end="url(#arrow-blue)"/>
+    <text x="205" y="17" fill="#E2E8F0" font-size="13.5" font-weight="600">Admin / SSH</text>
+    <line x1="330" y1="12" x2="360" y2="12" stroke="#8B5CF6" stroke-width="3.5" marker-end="url(#arrow-purple)"/>
+    <text x="370" y="17" fill="#E2E8F0" font-size="13.5" font-weight="600">Logs / Monitoramento</text>
+    <line x1="555" y1="12" x2="585" y2="12" stroke="#F59E0B" stroke-width="3" stroke-dasharray="6,3" marker-end="url(#arrow-orange)"/>
+    <text x="595" y="17" fill="#FDE68A" font-size="13.5" font-weight="600">Automação / Backup</text>
+  </g>
+
+  <!-- ========================================================= -->
+  <!-- COLUMN 1: INTERNET & CLOUDFLARE PERIMETER (x=32..392)     -->
+  <!-- ========================================================= -->
+
+  <!-- Card: Clientes / Internet -->
+  <g filter="url(#shadow)">
+    <rect x="32" y="112" width="360" height="132" rx="12" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.8"/>
+    <rect x="32" y="112" width="360" height="36" rx="12" fill="#1E293B"/>
+    <rect x="32" y="134" width="360" height="14" fill="#1E293B"/>
+    <text x="50" y="136" fill="#FFFFFF" font-size="15" font-weight="700">INTERNET — CLIENTES</text>
+    <text x="50" y="175" fill="#0F172A" font-size="14" font-weight="700">https://maisplace.net.br (+ www)</text>
+    <text x="50" y="201" fill="#475569" font-size="13">• Acesso público somente via HTTPS/TLS</text>
+    <text x="50" y="225" fill="#DC2626" font-size="13" font-weight="700">✕ IP direto do servidor / SSH: BLOQUEADOS</text>
+  </g>
+
+  <!-- Card: Cloudflare Borda / DNS / WAF -->
+  <g filter="url(#shadow)">
+    <rect x="32" y="308" width="360" height="256" rx="12" fill="#FFF7ED" stroke="#F97316" stroke-width="2.2"/>
+    <rect x="32" y="308" width="360" height="38" rx="12" fill="#EA580C"/>
+    <rect x="32" y="332" width="360" height="14" fill="#EA580C"/>
+    <text x="50" y="333" fill="#FFFFFF" font-size="15" font-weight="700">CLOUDFLARE — DNS, PROXY &amp; WAF</text>
+    <text x="50" y="374" fill="#9A3412" font-size="13.5" font-weight="700">DNS + Proxy + TLS Full (Strict)</text>
+    <text x="50" y="398" fill="#1E293B" font-size="13">• Oculta IP de origem (Prefix List na AWS)</text>
+    <line x1="50" y1="414" x2="374" y2="414" stroke="#FDBA74" stroke-width="1.2"/>
+    <text x="50" y="438" fill="#9A3412" font-size="13.5" font-weight="700">5 Regras de Proteção WAF:</text>
+    <text x="50" y="462" fill="#1E293B" font-size="13">• Geo-block (somente Brasil) + SQLi</text>
+    <text x="50" y="484" fill="#1E293B" font-size="13">• Exploração de plugins + /wp-json/users</text>
+    <text x="50" y="506" fill="#1E293B" font-size="13">• Rate limit /wp-admin (5 req → Block)</text>
+    <text x="50" y="536" fill="#047857" font-size="13" font-weight="700">✓ API Ban Automático (Fail2ban — 1h)</text>
+  </g>
+
+  <!-- Card: Administradores (Equipe G3) -->
+  <g filter="url(#shadow)">
+    <rect x="32" y="636" width="360" height="206" rx="12" fill="#EFF6FF" stroke="#3B82F6" stroke-width="2.2"/>
+    <rect x="32" y="636" width="360" height="38" rx="12" fill="#1D4ED8"/>
+    <rect x="32" y="660" width="360" height="14" fill="#1D4ED8"/>
+    <text x="50" y="661" fill="#FFFFFF" font-size="15" font-weight="700">ADMINISTRADORES (GRUPO G3)</text>
+    <text x="50" y="702" fill="#1E293B" font-size="13">• Guacamole: Cloudflare + Allowlist + <tspan font-weight="700" fill="#1D4ED8">MFA TOTP</tspan></text>
+    <text x="50" y="728" fill="#1E293B" font-size="13">• Wazuh &amp; Zabbix: HTTPS (443) só IPs <tspan font-weight="700">/32</tspan></text>
+    <text x="50" y="754" fill="#1E293B" font-size="13">• Console AWS: IAM Identity Center (SSO)</text>
+    <line x1="50" y1="772" x2="374" y2="772" stroke="#BFDBFE" stroke-width="1.2"/>
+    <text x="50" y="798" fill="#B45309" font-size="13" font-weight="700">Alertas por E-mail (5 Integrantes):</text>
+    <text x="50" y="822" fill="#1E293B" font-size="12.8">• AWS SNS (CloudWatch) + SMTP (Zabbix)</text>
+  </g>
+
+  <!-- Card: Integrações Externas -->
+  <g filter="url(#shadow)">
+    <rect x="32" y="876" width="360" height="142" rx="12" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6,3"/>
+    <rect x="32" y="876" width="360" height="34" rx="12" fill="#475569"/>
+    <rect x="32" y="896" width="360" height="14" fill="#475569"/>
+    <text x="50" y="899" fill="#FFFFFF" font-size="14" font-weight="700">INTEGRAÇÕES EXTERNAS</text>
+    <text x="50" y="936" fill="#1E293B" font-size="12.8">• Cloudflare API (Ban) • Let's Encrypt • SMTP</text>
+    <text x="50" y="964" fill="#64748B" font-size="12.2" font-style="italic">• Produção (contexto do caso): Gateways de</text>
+    <text x="50" y="984" fill="#64748B" font-size="12.2" font-style="italic">  Pagamento, ERP, Estoque e Transportadoras</text>
+  </g>
+
+  <!-- ========================================================= -->
+  <!-- AWS CLOUD CONTAINER (x=472..1888, y=104..1030)            -->
+  <!-- ========================================================= -->
+  <rect x="472" y="104" width="1416" height="926" rx="16" fill="#FFFFFF" stroke="#0F172A" stroke-width="2.2"/>
+  <rect x="472" y="104" width="380" height="36" rx="10" fill="#0F172A"/>
+  <text x="492" y="128" fill="#F59E0B" font-size="15.5" font-weight="700">AWS CLOUD — Região us-east-1</text>
+
+  <!-- ========================================================= -->
+  <!-- VPC CONTAINER (x=496..1468, y=156..1006)                  -->
+  <!-- ========================================================= -->
+  <rect x="496" y="156" width="972" height="850" rx="14" fill="#F1F5F9" stroke="#0284C7" stroke-width="2.2"/>
+  <rect x="496" y="156" width="340" height="32" rx="8" fill="#0284C7"/>
+  <text x="514" y="178" fill="#FFFFFF" font-size="14.5" font-weight="700">VPC: g3-vpc  (10.0.0.0/16)</text>
+
+  <!-- SUB-REDE PÚBLICA (x=520..978, y=206..982) -->
+  <rect x="520" y="206" width="458" height="776" rx="12" fill="#ECFDF5" stroke="#10B981" stroke-width="2" stroke-dasharray="8,4"/>
+  <rect x="520" y="206" width="290" height="30" rx="6" fill="#059669"/>
+  <text x="536" y="227" fill="#FFFFFF" font-size="13.5" font-weight="700">SUB-REDE PÚBLICA (us-east-1a)</text>
+
+  <!-- EC2 1: web-01 (y=254..472) -->
+  <g filter="url(#shadow)">
+    <rect x="542" y="254" width="414" height="214" rx="10" fill="#FFFFFF" stroke="#059669" stroke-width="2.2"/>
+    <rect x="542" y="254" width="414" height="38" rx="10" fill="#047857"/>
+    <rect x="542" y="278" width="414" height="14" fill="#047857"/>
+    <text x="558" y="279" fill="#FFFFFF" font-size="15" font-weight="700">web-01 — Aplicação Web (WordPress)</text>
+    <text x="558" y="316" fill="#0F172A" font-size="13" font-weight="700">EC2 t3.micro (+1 GB swap)  |  IP: 10.0.11.45</text>
+    <text x="558" y="340" fill="#1E293B" font-size="12.8">• Apache + PHP + WooCommerce</text>
+    <text x="558" y="362" fill="#1E293B" font-size="12.8">• Fail2ban (5 falhas login → Ban Cloudflare 1h)</text>
+    <text x="558" y="384" fill="#5B21B6" font-size="12.8" font-weight="600">• Agentes: Wazuh 4.9.2 (FIM) + Zabbix Agent 2</text>
+    <rect x="556" y="398" width="386" height="56" rx="7" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.2"/>
+    <text x="568" y="419" fill="#166534" font-size="12.2" font-weight="700">SG g3-webserver (Menor Privilégio):</text>
+    <text x="568" y="440" fill="#1E293B" font-size="12">80/443 só Cloudflare | 22 só jump-01 | 10050 só Zabbix</text>
+  </g>
+
+  <!-- EC2 2: jump-01 (y=508..716) -->
+  <g filter="url(#shadow)">
+    <rect x="542" y="508" width="414" height="204" rx="10" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.2"/>
+    <rect x="542" y="508" width="414" height="38" rx="10" fill="#1D4ED8"/>
+    <rect x="542" y="532" width="414" height="14" fill="#1D4ED8"/>
+    <text x="558" y="533" fill="#FFFFFF" font-size="15" font-weight="700">jump-01 — Jump Server (Guacamole)</text>
+    <text x="558" y="570" fill="#0F172A" font-size="13" font-weight="700">EC2 t2.micro (Docker + UFW)  |  IP: 10.0.4.101</text>
+    <text x="558" y="594" fill="#1E293B" font-size="12.8">• Apache Guacamole + Nginx (Allowlist IP + TOTP)</text>
+    <text x="558" y="616" fill="#5B21B6" font-size="12.8" font-weight="600">• Agentes: Wazuh 4.9.2 + Zabbix Agent 2 (Docker)</text>
+    <rect x="556" y="632" width="386" height="64" rx="7" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.2"/>
+    <text x="568" y="653" fill="#1E40AF" font-size="12.2" font-weight="700">SG g3-guacamole — Ponto Único SSH:</text>
+    <text x="568" y="674" fill="#1E293B" font-size="12">443 só Cloudflare | 10050 só SG Wazuh | Saída SSH 22</text>
+  </g>
+
+  <!-- EC2 3: g3-wazuh-server (y=752..966) -->
+  <g filter="url(#shadow)">
+    <rect x="542" y="752" width="414" height="214" rx="10" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2.2"/>
+    <rect x="542" y="752" width="414" height="38" rx="10" fill="#6D28D9"/>
+    <rect x="542" y="776" width="414" height="14" fill="#6D28D9"/>
+    <text x="558" y="777" fill="#FFFFFF" font-size="15" font-weight="700">g3-wazuh-server — SIEM &amp; Monitoramento</text>
+    <text x="558" y="814" fill="#0F172A" font-size="13" font-weight="700">EC2 t3.medium (4 GB + 2 GB swap) | 10.0.4.20</text>
+    <text x="558" y="838" fill="#5B21B6" font-size="12.8" font-weight="700">• Wazuh 4.9.2: <tspan font-weight="400" fill="#1E293B">3 agentes, FIM, SCA, Vuln Detection</tspan></text>
+    <text x="558" y="860" fill="#5B21B6" font-size="12.8" font-weight="700">• Zabbix 7.0: <tspan font-weight="400" fill="#1E293B">4 hosts, Triggers + Alertas E-mail</tspan></text>
+    <text x="558" y="882" fill="#475569" font-size="12.2">• HTTPS Let's Encrypt (monitoramento / zabbix)</text>
+    <rect x="556" y="896" width="386" height="56" rx="7" fill="#F5F3FF" stroke="#C4B5FD" stroke-width="1.2"/>
+    <text x="568" y="917" fill="#5B21B6" font-size="12.2" font-weight="700">SG g3-sc-wazuh (Porta 55000 fechada):</text>
+    <text x="568" y="938" fill="#1E293B" font-size="12">443 só /32 | 1514/1515 só SGs internos | 10051 VPC</text>
+  </g>
+
+  <!-- SUB-REDE PRIVADA (x=1058..1444, y=206..626) -->
+  <rect x="1058" y="206" width="386" height="418" rx="12" fill="#FEF2F2" stroke="#DC2626" stroke-width="2.2" stroke-dasharray="8,4"/>
+  <rect x="1058" y="206" width="340" height="30" rx="6" fill="#B91C1C"/>
+  <text x="1074" y="227" fill="#FFFFFF" font-size="13.5" font-weight="700">SUB-REDE PRIVADA (SEM IP PÚBLICO)</text>
+
+  <!-- EC2 4: db-01 -->
+  <g filter="url(#shadow)">
+    <rect x="1080" y="254" width="342" height="278" rx="10" fill="#FFFFFF" stroke="#DC2626" stroke-width="2.2"/>
+    <rect x="1080" y="254" width="342" height="38" rx="10" fill="#991B1B"/>
+    <rect x="1080" y="278" width="342" height="14" fill="#991B1B"/>
+    <text x="1096" y="279" fill="#FFFFFF" font-size="15" font-weight="700">db-01 — Banco de Dados MySQL</text>
+    <text x="1096" y="318" fill="#0F172A" font-size="13" font-weight="700">EC2 t2.micro (CPU Unlimited + 1 GB swap)</text>
+    <text x="1096" y="340" fill="#991B1B" font-size="13" font-weight="700">IP Privado: 10.0.136.239 (Isolado)</text>
+    <text x="1096" y="366" fill="#1E293B" font-size="12.8">• MySQL 8 (bind-address privado + tuning)</text>
+    <text x="1096" y="388" fill="#B45309" font-size="12.8" font-weight="700">• Dump diário (cron) — Restore validado ✓</text>
+    <text x="1096" y="410" fill="#5B21B6" font-size="12.8" font-weight="600">• Agentes: Wazuh 4.9.2 + Zabbix Agent 2</text>
+    <rect x="1094" y="428" width="314" height="88" rx="7" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="1.2"/>
+    <text x="1106" y="449" fill="#991B1B" font-size="12.2" font-weight="700">SG g3-dbserver (Isolamento LGPD):</text>
+    <text x="1106" y="470" fill="#1E293B" font-size="12">• 3306 só SG web-01 | 10050 só SG Zabbix</text>
+    <text x="1106" y="490" fill="#1E293B" font-size="12">• 22 (SSH) só SG Guacamole/Web</text>
+    <text x="1106" y="508" fill="#DC2626" font-size="12" font-weight="700">✕ ZERO acesso direto da Internet</text>
+  </g>
+
+  <!-- Rationale badge inside Private Subnet -->
+  <rect x="1080" y="548" width="342" height="58" rx="8" fill="#FFFBEB" stroke="#F59E0B" stroke-width="1.5"/>
+  <text x="1096" y="571" fill="#92400E" font-size="12.5" font-weight="700">Isolamento de Dados Pessoais (LGPD):</text>
+  <text x="1096" y="592" fill="#475569" font-size="12">Banco alcançável apenas pela aplicação e bastion.</text>
+
+  <!-- Summary Card: Matriz de Fluxos Permitidos (bottom-right of VPC) -->
+  <g filter="url(#shadow)">
+    <rect x="1058" y="658" width="386" height="308" rx="12" fill="#FFFFFF" stroke="#4C1D95" stroke-width="2"/>
+    <rect x="1058" y="658" width="386" height="36" rx="12" fill="#4C1D95"/>
+    <rect x="1058" y="680" width="386" height="14" fill="#4C1D95"/>
+    <text x="1076" y="682" fill="#FFFFFF" font-size="14.5" font-weight="700">RESUMO DE FLUXOS PERMITIDOS</text>
+    <text x="1076" y="724" fill="#047857" font-size="13" font-weight="700">1. Loja → Banco de Dados:</text>
+    <text x="1076" y="746" fill="#1E293B" font-size="12.5">   web-01 → db-01 (TCP 3306 / MySQL)</text>
+    <text x="1076" y="778" fill="#1D4ED8" font-size="13" font-weight="700">2. Administração Remota:</text>
+    <text x="1076" y="800" fill="#1E293B" font-size="12.5">   jump-01 → EC2 internas (TCP 22 / SSH)</text>
+    <text x="1076" y="832" fill="#6D28D9" font-size="13" font-weight="700">3. SIEM &amp; Monitoramento:</text>
+    <text x="1076" y="854" fill="#1E293B" font-size="12.5">   Agentes → Wazuh (1514/1515) | Zabbix (10050/51)</text>
+    <text x="1076" y="886" fill="#B45309" font-size="13" font-weight="700">4. Defesa Automática &amp; Telemetria:</text>
+    <text x="1076" y="908" fill="#1E293B" font-size="12.5">   Fail2ban → Cloudflare API | EC2 → CloudWatch</text>
+    <line x1="1076" y1="924" x2="1426" y2="924" stroke="#E2E8F0" stroke-width="1.2"/>
+    <text x="1076" y="948" fill="#DC2626" font-size="13" font-weight="700">Política Padrão: DENY ALL (Menor Privilégio)</text>
+  </g>
+
+  <!-- ========================================================= -->
+  <!-- COLUMN 4: AWS MANAGED SERVICES (x=1506..1864)             -->
+  <!-- ========================================================= -->
+  <text x="1508" y="182" fill="#0F172A" font-size="15.5" font-weight="700">SERVIÇOS GERENCIADOS AWS</text>
+
+  <!-- IAM -->
+  <g filter="url(#shadow)">
+    <rect x="1506" y="206" width="358" height="162" rx="10" fill="#FFFFFF" stroke="#334155" stroke-width="1.8"/>
+    <rect x="1506" y="206" width="358" height="34" rx="10" fill="#334155"/>
+    <rect x="1506" y="226" width="358" height="14" fill="#334155"/>
+    <text x="1522" y="229" fill="#FFFFFF" font-size="14" font-weight="700">IAM &amp; Identity Center (SSO)</text>
+    <text x="1522" y="268" fill="#1E293B" font-size="13">• 5 contas nominais + acesso via SSO</text>
+    <text x="1522" y="294" fill="#1E293B" font-size="13">• Política de senha forte (14+ chars, 90d)</text>
+    <text x="1522" y="320" fill="#047857" font-size="13" font-weight="700">✓ Root sem Access Keys (verificado)</text>
+    <text x="1522" y="346" fill="#B45309" font-size="12.2">• MFA AWS: risco aceito em lab</text>
+  </g>
+
+  <!-- CloudTrail + S3 -->
+  <g filter="url(#shadow)">
+    <rect x="1506" y="396" width="358" height="166" rx="10" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+    <rect x="1506" y="396" width="358" height="34" rx="10" fill="#B45309"/>
+    <rect x="1506" y="416" width="358" height="14" fill="#B45309"/>
+    <text x="1522" y="419" fill="#FFFFFF" font-size="14" font-weight="700">CloudTrail + S3 (Auditoria)</text>
+    <text x="1522" y="458" fill="#1E293B" font-size="13">• Trail multi-região: g3-maisplace-trail</text>
+    <text x="1522" y="484" fill="#1E293B" font-size="13">• Validação de integridade de logs ativa</text>
+    <text x="1522" y="510" fill="#047857" font-size="13" font-weight="700">✓ Bucket S3 privado (AES-256)</text>
+    <text x="1522" y="536" fill="#475569" font-size="12.2">• Registra todas as chamadas de API AWS</text>
+  </g>
+
+  <!-- CloudWatch + SNS -->
+  <g filter="url(#shadow)">
+    <rect x="1506" y="590" width="358" height="184" rx="10" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+    <rect x="1506" y="590" width="358" height="34" rx="10" fill="#7C3AED"/>
+    <rect x="1506" y="610" width="358" height="14" fill="#7C3AED"/>
+    <text x="1522" y="613" fill="#FFFFFF" font-size="14" font-weight="700">CloudWatch + SNS (Alarmes)</text>
+    <text x="1522" y="652" fill="#1E293B" font-size="13">• Alarmes: CPU, Rede, Disco e Status Check</text>
+    <text x="1522" y="678" fill="#1E293B" font-size="13">• Tópico SNS: Alertas-CloudWatch</text>
+    <text x="1522" y="704" fill="#5B21B6" font-size="13" font-weight="700">• 5 e-mails confirmados (equipe G3)</text>
+    <text x="1522" y="730" fill="#1E293B" font-size="12.5">• Eventos ingeridos no SIEM Wazuh</text>
+  </g>
+
+  <!-- AWS DLM -->
+  <g filter="url(#shadow)">
+    <rect x="1506" y="802" width="358" height="180" rx="10" fill="#FFFFFF" stroke="#059669" stroke-width="2"/>
+    <rect x="1506" y="802" width="358" height="34" rx="10" fill="#059669"/>
+    <rect x="1506" y="822" width="358" height="14" fill="#059669"/>
+    <text x="1522" y="825" fill="#FFFFFF" font-size="14" font-weight="700">Backup &amp; Recuperação (DLM)</text>
+    <text x="1522" y="864" fill="#1E293B" font-size="13">• Snapshots EBS diários (06:00 UTC)</text>
+    <text x="1522" y="890" fill="#1E293B" font-size="13">• Retenção 7 dias (tag Backup=daily)</text>
+    <text x="1522" y="916" fill="#047857" font-size="13" font-weight="700">✓ Teste de Restauração OK (17/11)</text>
+    <text x="1522" y="942" fill="#475569" font-size="12.5">• 51 tabelas MySQL conferidas com sucesso</text>
+  </g>
+
+  <!-- ========================================================= -->
+  <!-- CLEAN ARROWS WITH AMPLE BREATHING ROOM                    -->
+  <!-- ========================================================= -->
+
+  <!-- 1. Clientes -> Cloudflare -->
+  <path d="M 212 244 L 212 302" stroke="#059669" stroke-width="3.5" fill="none" marker-end="url(#arrow-green)"/>
+  <rect x="148" y="261" width="128" height="24" rx="5" fill="#ECFDF5" stroke="#059669" stroke-width="1.2"/>
+  <text x="212" y="278" text-anchor="middle" fill="#047857" font-size="12" font-weight="700">HTTPS (443)</text>
+
+  <!-- 2. Cloudflare -> web-01 (HTTPS 443) -->
+  <path d="M 392 356 L 536 356" stroke="#059669" stroke-width="3.5" fill="none" marker-end="url(#arrow-green)"/>
+  <rect x="410" y="326" width="106" height="24" rx="5" fill="#ECFDF5" stroke="#059669" stroke-width="1.2"/>
+  <text x="463" y="343" text-anchor="middle" fill="#047857" font-size="11.5" font-weight="700">HTTPS 443</text>
+
+  <!-- 3. web-01 -> Cloudflare API (Fail2ban feedback, cleanly spaced below) -->
+  <path d="M 542 426 L 398 426" stroke="#D97706" stroke-width="2.8" stroke-dasharray="6,4" fill="none" marker-end="url(#arrow-orange)"/>
+  <rect x="406" y="434" width="114" height="24" rx="5" fill="#FFFBEB" stroke="#D97706" stroke-width="1.2"/>
+  <text x="463" y="451" text-anchor="middle" fill="#B45309" font-size="11.2" font-weight="700">Fail2ban API</text>
+
+  <!-- 4. Cloudflare -> jump-01 (HTTPS 443 Guacamole) -->
+  <path d="M 392 540 L 536 540" stroke="#2563EB" stroke-width="3.5" fill="none" marker-end="url(#arrow-blue)"/>
+  <rect x="410" y="510" width="106" height="24" rx="5" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.2"/>
+  <text x="463" y="527" text-anchor="middle" fill="#1D4ED8" font-size="11.5" font-weight="700">HTTPS 443</text>
+
+  <!-- 5. Admins -> Cloudflare (Guacamole) -->
+  <path d="M 212 636 L 212 570" stroke="#2563EB" stroke-width="3.5" fill="none" marker-end="url(#arrow-blue)"/>
+  <rect x="122" y="590" width="180" height="24" rx="5" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.2"/>
+  <text x="212" y="607" text-anchor="middle" fill="#1D4ED8" font-size="11.5" font-weight="700">Guacamole (TOTP + IP)</text>
+
+  <!-- 6. Admins -> g3-wazuh-server (443 /32) -->
+  <path d="M 392 780 L 444 780 L 444 820 L 536 820" stroke="#2563EB" stroke-width="3.5" fill="none" marker-end="url(#arrow-blue)"/>
+  <rect x="402" y="750" width="116" height="24" rx="5" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.2"/>
+  <text x="460" y="767" text-anchor="middle" fill="#1D4ED8" font-size="11.5" font-weight="700">HTTPS 443 (/32)</text>
+
+  <!-- 7. web-01 -> db-01 (TCP 3306) -->
+  <path d="M 956 324 L 1074 324" stroke="#059669" stroke-width="3.5" fill="none" marker-end="url(#arrow-green)"/>
+  <rect x="974" y="294" width="84" height="24" rx="5" fill="#ECFDF5" stroke="#059669" stroke-width="1.2"/>
+  <text x="1016" y="311" text-anchor="middle" fill="#047857" font-size="11.5" font-weight="700">TCP 3306</text>
+
+  <!-- 8. jump-01 -> db-01 (SSH 22) -->
+  <path d="M 956 565 L 1016 565 L 1016 408 L 1074 408" stroke="#2563EB" stroke-width="3" fill="none" marker-end="url(#arrow-blue)"/>
+  <rect x="980" y="470" width="72" height="24" rx="5" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.2"/>
+  <text x="1016" y="487" text-anchor="middle" fill="#1D4ED8" font-size="11.5" font-weight="700">SSH 22</text>
+
+  <!-- 9. jump-01 -> web-01 (SSH 22 upward) -->
+  <path d="M 660 508 L 660 474" stroke="#2563EB" stroke-width="3" fill="none" marker-end="url(#arrow-blue)"/>
+  <text x="672" y="496" fill="#1D4ED8" font-size="11.5" font-weight="700">SSH 22</text>
+
+  <!-- 10. jump-01 -> g3-wazuh-server (SSH 22 downward) -->
+  <path d="M 660 712 L 660 746" stroke="#2563EB" stroke-width="3" fill="none" marker-end="url(#arrow-blue)"/>
+  <text x="672" y="735" fill="#1D4ED8" font-size="11.5" font-weight="700">SSH 22</text>
+
+  <!-- 11. g3-wazuh-server <-> jump-01 (Wazuh 1514 / Zabbix 10050) -->
+  <path d="M 820 752 L 820 718" stroke="#7C3AED" stroke-width="3" fill="none" marker-end="url(#arrow-purple)"/>
+  <text x="832" y="739" fill="#6D28D9" font-size="11.2" font-weight="700">1514 / 10050</text>
+
+  <!-- 12. db-01 -> g3-wazuh-server (Monitoring 1514/10050) -->
+  <path d="M 1080 510 L 1018 510 L 1018 850 L 962 850" stroke="#7C3AED" stroke-width="3" stroke-dasharray="6,4" fill="none" marker-end="url(#arrow-purple)"/>
+  <rect x="970" y="690" width="96" height="36" rx="5" fill="#F5F3FF" stroke="#7C3AED" stroke-width="1.2"/>
+  <text x="1018" y="705" text-anchor="middle" fill="#5B21B6" font-size="10.8" font-weight="700">Wazuh 1514</text>
+  <text x="1018" y="720" text-anchor="middle" fill="#5B21B6" font-size="10.8" font-weight="700">Zabbix 10050</text>
+
+  <!-- 13. VPC -> AWS Managed Services connectors -->
+  <path d="M 1468 478 L 1500 478" stroke="#D97706" stroke-width="3" stroke-dasharray="5,3" fill="none" marker-end="url(#arrow-orange)"/>
+  <path d="M 1468 682 L 1500 682" stroke="#7C3AED" stroke-width="3" stroke-dasharray="5,3" fill="none" marker-end="url(#arrow-purple)"/>
+  <path d="M 1468 892 L 1500 892" stroke="#059669" stroke-width="3" stroke-dasharray="5,3" fill="none" marker-end="url(#arrow-green)"/>
+
+  <!-- Clean Footer -->
+  <text x="36" y="1062" fill="#64748B" font-size="12.5">MaisPlace — Projeto Final de Cibersegurança em Nuvem (Insper)  |  Grupo G3: Eduardo, Gustavo, Henrique, Lucas e Sidney</text>
+  <text x="1884" y="1062" text-anchor="end" fill="#64748B" font-size="12.5">Formato 16:9 (Slide 6)  |  15/15 requisitos da Seção 12</text>
+</svg>
